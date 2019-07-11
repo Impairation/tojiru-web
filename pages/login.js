@@ -34,7 +34,6 @@ app.get("/login", async (req, res) => {
         error: req.query.e,
         
     });
-    res.end()
 })
 
 app.post("/login", async (req, res) => {

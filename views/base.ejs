@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <% let privileges={UserBanned:0,UserPublic:1,UserNormal:2,UserDonor:4,AdminAccessRAP:8,AdminManageUsers:16,AdminBanUsers:32,AdminSilenceUsers:64,AdminWipeUsers:128,AdminManageBeatmaps:256,AdminManageServers:512,AdminManageSettings:1024,AdminManageBetaKeys:2048,AdminManageReports:4096,AdminManageDocs:8192,AdminManageBadges:16384,AdminViewRAPLogs:32768,AdminManagePrivileges:65536,AdminSendAlerts:2<<16,AdminChatMod:2<<17,AdminKickUsers:2<<18,UserPendingVerification:2<<19,UserTournamentStaff:2<<20,AdminCaker:2<<21,AdminViewTopScores:2<<22}; %>
+
 <head>
     <title>
         <%= title %> - Tojiru
@@ -17,6 +18,7 @@
             $(".dropdown-trigger-two").dropdown();
             $(".dropdown-trigger-leaderboard").dropdown();
             $(".dropdown-trigger-3").dropdown();
+            $(".dropdown-trigger-language").dropdown();
             $(document).ready(function () {
                 $('.sidenav').sidenav();
             });
@@ -27,62 +29,59 @@
 <body>
     <nav class="black lighten-2" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Tojiru</a>
-            <% if (Boolean(userData.privileges & privileges.AdminAccessRAP)) { %>
+
             <ul class="left">
-                <li><a href="/admin" style="margin-left: 100px;">Admin Panel</a></li>
-            </ul>
-            <% } %>
-            <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-trigger-leaderboard" data-target="dropdown3" href="#">Leaderboard</a>
+                <% if (Boolean(userData.privileges & privileges.AdminAccessRAP)) { %>
+                    <li><a href="/admin" style="margin-left: 100px;">Admin Panel</a></li>
+                <% } %>
+                <li><a class="dropdown-trigger-language" style="margin-left: <% if (Boolean(userData.privileges & privileges.AdminAccessRAP) == false) { %> 100px; <% } %>" data-target="lang" href="#">Language</a>
                 </li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Community</a></li>
-                <li><a class="dropdown-trigger-two" href="#!" data-target="dropdown2">Help</a></li>
+            </ul>
+            
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-trigger-leaderboard" data-target="dropdown3" href="#"><%= __('leaderboard')%></a>
+                </li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><%= __('community')%></a></li>
+                <li><a class="dropdown-trigger-two" href="#!" data-target="dropdown2"><%= __('help')%></a></li>
                 <% if (loggedIn == true) { %>
                 <li><a class="dropdown-trigger-3" href="#!" data-target="dropdown-profile"><%= userData.username %></a>
                 </li>
                 <% } else { %>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
-                <% } %>
-            </ul>
-
-            <ul id="nav-mobile" class="sidenav">
-                <li><a href="/leaderboard">Leaderboard</a></li>
-                <% if (loggedIn == true) { %>
-                <li><a class="dropdown-trigger-profile" href="#!" data-target="dropdown-profile"><img
-                            src="https://a.tojiru.pw/<%= userData.id %>" width="30px"
-                            height="30px" /><%= userData.username %></a></li>
-                <% } else { %>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
+                <li><a href="/login"><%= __('login')%></a></li>
+                <li><a href="/register"><%= __('register')%></a></li>
                 <% } %>
             </ul>
         </div>
     </nav>
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="/clans">Clans</a></li>
-        <li><a href="/top">Top Plays</a></li>
-        <li><a href="/keys">Public Keys</a></li>
+        <li><a href="/clans"><%= __('clans')%></a></li>
+        <li><a href="/top"><%= __('topPlays')%></a></li>
+        <li><a href="/keys"><%= __('publicKeys')%></a></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content">
-        <li><a href="/about">About</a></li>
-        <li><a href="/rules">Rules</a></li>
+        <li><a href="/about"><%= __('about')%></a></li>
+        <li><a href="/rules"><%= __('rules')%></a></li>
         <li class="divider"></li>
-        <li><a href="/connect">Switcher</a></li>
-        <li><a href="/discord">Discord</a></li>
+        <li><a href="/connect"><%= __('switcher')%></a></li>
+        <li><a href="/discord"><%= __('discord')%></a></li>
     </ul>
     <ul id="dropdown3" class="dropdown-content">
-        <li><a href="/leaderboard/performance">Performance</a></li>
-        <li><a href="/leaderboard/score">Score</a></li>
-        <li><a href="/leaderboard/relax">Relax</a></li>
-        <li><a href="/leaderboard/autopilot">AutoPilot</a></li>
+        <li><a href="/leaderboard/performance"><%= __('performance')%></a></li>
+        <li><a href="/leaderboard/score"><%= __('score')%></a></li>
+        <li><a href="/leaderboard/relax"><%= __('relax')%></a></li>
+        <li><a href="/leaderboard/autopilot"><%= __('autopilot')%></a></li>
+    </ul>
+    <ul id="lang" class="dropdown-content">
+            <li><a href="/en"><img src="/static/img/flags/GB.png" width="15px"> English</a></li>
+            <li><a href="/es"><img src="/static/img/flags/ES.png" width="15px"> Español</a></li>
+            <li><a href="/de"><img src="/static/img/flags/DE.png" width="15px"> Deutsche</a></li>
     </ul>
     <% if (loggedIn) { %>
     <ul id="dropdown-profile" class="dropdown-content">
-        <li><a href="/u/<%= userData.id %> ">Profile</a></li>
-        <li><a href="/friends">Friends</a></li>
-        <li><a href="/settings">Settings</a></li>
-        <li><a href="/logout">Log out</a></li>
+        <li><a href="/u/<%= userData.id %> "><%= __('profile')%></a></li>
+        <li><a href="/friends"><%= __('friends')%></a></li>
+        <li><a href="/settings"><%= __('settings')%></a></li>
+        <li><a href="/logout"><%= __('logout')%></a></li>
     </ul>
     <% } %>
     <!-- end navbar -->

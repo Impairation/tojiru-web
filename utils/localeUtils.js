@@ -1,11 +1,12 @@
-var i18n = require('i18n');
+var i18n = require('i18n'),
+    path = require("path");
 
 i18n.configure({
   // setup some locales - other locales default to en silently
   locales:['en', 'es', "de"],
 
   // where to store json files - defaults to './locales' relative to modules directory
-  directory: __dirname + '/locales',
+  directory: path.join(__dirname + '/../locales'),
   
   defaultLocale: 'en',
   

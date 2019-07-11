@@ -39,6 +39,7 @@ if (!fs.existsSync('config.json')) {
     app.use(passport.session());
     app.use(require("./utils/localeUtils"));
 
+    app.use(require("./pages/changeLocales"))
     app.use(require("./pages/home"))
     app.use(require("./pages/register"))
     app.use(require("./pages/verify"))
