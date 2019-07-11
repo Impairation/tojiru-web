@@ -8,9 +8,7 @@
     "site": {
         "port": 6969,
         "secret": "",
-        "avatarServerLocation": "",
-        "banchoApiKey": ""
-
+        "avatarServerLocation": ""
     },
     "osu": {
         "username": "",

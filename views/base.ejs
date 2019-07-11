@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<% let privileges={UserBanned:0,UserPublic:1,UserNormal:2,UserDonor:4,AdminAccessRAP:8,AdminManageUsers:16,AdminBanUsers:32,AdminSilenceUsers:64,AdminWipeUsers:128,AdminManageBeatmaps:256,AdminManageServers:512,AdminManageSettings:1024,AdminManageBetaKeys:2048,AdminManageReports:4096,AdminManageDocs:8192,AdminManageBadges:16384,AdminViewRAPLogs:32768,AdminManagePrivileges:65536,AdminSendAlerts:2<<16,AdminChatMod:2<<17,AdminKickUsers:2<<18,UserPendingVerification:2<<19,UserTournamentStaff:2<<20,AdminCaker:2<<21,AdminViewTopScores:2<<22}; %>
 <head>
     <title>
         <%= title %> - Tojiru
@@ -27,7 +27,7 @@
 <body>
     <nav class="black lighten-2" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Tojiru</a>
-            <% if (userData.privileges > 8) { %>
+            <% if (Boolean(userData.privileges & privileges.AdminAccessRAP)) { %>
             <ul class="left">
                 <li><a href="/admin" style="margin-left: 100px;">Admin Panel</a></li>
             </ul>
