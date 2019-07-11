@@ -17,4 +17,8 @@ app.get("/de", async (req, res) => {
     res.redirect("/")
 })
 
+app.get("/pl", async (req, res) => {
+    res.cookie('lang', "pl");
+    res.redirect("/")
+})
 module.exports = app;

@@ -3,7 +3,7 @@ var i18n = require('i18n'),
 
 i18n.configure({
   // setup some locales - other locales default to en silently
-  locales:['en', 'es', "de"],
+  locales:['en', 'es', "de", !"pl"],
 
   // where to store json files - defaults to './locales' relative to modules directory
   directory: path.join(__dirname + '/../locales'),
