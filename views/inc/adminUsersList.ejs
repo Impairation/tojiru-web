@@ -1,0 +1,23 @@
+<div class="col s12">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Permissions</th>
+                <th>Allowed?</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% userList.forEach(player => { %>
+            <tr>
+                <td><%= player.id %></td>
+                <td><a href="/admin/users/edit/<%= player.id %>"><%= player.username %></a></td>
+                <td><%= player.name %></td>
+                <td><% if (player.privileges >= 3) { %>Yes<% } else { %>No <% } %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

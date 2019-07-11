@@ -1,0 +1,29 @@
+<div class="container">
+        <h4><%= modeName %> leaderboard (Score) </h4>
+        <a class="waves-effect waves-light btn" href="/leaderboard/score?m=0">Standard</a>
+        <a class="waves-effect waves-light btn" href="/leaderboard/score?m=1">Taiko</a>
+        <a class="waves-effect waves-light btn" href="/leaderboard/score?m=2">Catch the Beat</a>
+        <a class="waves-effect waves-light btn" href="/leaderboard/score?m=3">Mania</a>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <% if (leaderboard != null) { %>
+                <% leaderboard.forEach(player => { %>
+                <tr>
+                    <td><%= player.rank %></td>
+                    <td><a href="/u/<%= player.id %>"><%= player.username %></a></td>
+                    <td><%= player.score.toLocaleString() %></td>
+                </tr>
+                <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>

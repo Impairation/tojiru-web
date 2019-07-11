@@ -1,0 +1,20 @@
+{
+    "db": {
+        "username": "root",
+        "password": "",
+        "database": "ripple",
+        "host": "localhost"
+    },
+    "site": {
+        "port": 6969,
+        "secret": "",
+        "avatarServerLocation": "",
+        "banchoApiKey": ""
+
+    },
+    "osu": {
+        "username": "",
+        "password": "",
+        "api_key": ""
+    }
+}

@@ -1,0 +1,132 @@
+<div class="container">
+    <div class="col s12">
+        <div class="card blue">
+            <div class="card-content white-text">
+                <%= extraInfo.userpage_content %>
+            </div>
+        </div>
+    </div>
+    <div class="col s12">
+        <div class="card white">
+            <div class="card-content black-text">
+                <img src="https://a.tojiru.pw/<%= requestedData.id %>" width="100px" height="100px">
+                <h4 style="margin-top: -75px; margin-left: 110px; "><%= requestedData.username %> <% if (userGroup.id == 6) { %><i
+                        class="material-icons tooltip pink-text" aria-label="Supporter" data-balloon-pos="up">favorite
+                    </i> <% } %> <% if (userGroup.id == 2) { %><i class="material-icons tooltip orange-text" aria-label="BAT"
+                        data-balloon-pos="up">music_note</i> <% } %> <% if (userGroup.id == 4 || userGroup.id == 7) { %><i class="material-icons tooltip blue-text"
+                        aria-label="Admin" data-balloon-pos="up">person</i> <% } %></h4>
+                <h4 style="margin-top: -75px; text-align: right;">
+                    <% if (requestedData.rank != null) { %>#<%= requestedData.rank %><% } else { %>unranked<% } %></h4>
+                <br><br><br><br>
+            </div>
+        </div>
+    </div>
+    <div class="col s12">
+        <ul class="roundedCorners tabs tab-profile z-depth-1 pink" style="width: 100%;">
+            <li class="tab col s6"> <a class="white-text waves-effect waves-light "
+                    href="/u/<%= requestedData.id %>?m=0<%= extraAdd %>">Standard</a>
+            </li>
+            <li class="tab"></li>
+            <li class="tab"></li>
+            <li class="tab"></li>
+            <li class="tab col s6"><a class="white-text waves-effect waves-light "
+                    href="/u/<%= requestedData.id %>?m=1<%= extraAdd %>">Taiko</a>
+            </li>
+            <li class="tab"></li>
+            <li class="tab"></li>
+            <li class="tab"></li>
+            <li class="tab col s6"><a class="white-text waves-effect waves-light "
+                    href="/u/<%= requestedData.id %>?m=2<%= extraAdd %>">Catch the
+                    Beat</a>
+            </li>
+            <li class="tab"></li>
+            <li class="tab"></li>
+            <li class="tab"></li>
+            <li class="tab col s6"> <a class="white-text waves-effect waves-light"
+                    href="/u/<%= requestedData.id %>?m=3<%= extraAdd %>">Mania</a>
+            </li>
+            <li class="tab"></li>
+            <li class="tab col s6"> <a class="white-text waves-effect waves-light"
+                    href="/u/<%= requestedData.id %>?type=vanilla">View Vanilla</a>
+            </li>
+            <li class="tab"></li>
+            <li class="tab col s6"> <a class="white-text waves-effect waves-light"
+                    href="/u/<%= requestedData.id %>?type=relax">View Relax</a>
+            </li>
+            <li class="tab"></li>
+            <li class="tab col s6"> <a class="white-text waves-effect waves-light"
+                    href="/u/<%= requestedData.id %>?type=autopilot">View AutoPilot</a>
+            </li>
+            <li class="tab"></li>
+        </ul>
+    </div>
+    <div class="row">
+        <h4>Latest play</h4>
+        <% if (mostRecentPlay.length > 0) { %>
+        <% mostRecentPlay.forEach(score => { %>
+        <div clas="col s4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://assets.ppy.sh/beatmaps/<%= score.beatmapset_id %>/covers/cover.jpg">
+                    <span class="card-title"><%= score.song_name %></span>
+                </div>
+                <div class="card-content">
+                    <p><%= score.pp %>pp | <%= score.accuracy.toFixed(2) %>%</p>
+                </div>
+                <div class="card-action">
+                    <a href="/b/<%= score.beatmap_id %>">Map</a>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+        <% } %>
+    </div>
+    <h4>Top plays</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Map</th>
+                <th>Mods</th>
+                <th>Accuracy</th>
+                <th>PP</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if (topScores.length > 0) { %>
+            <% topScores.forEach(score => { %>
+            <tr>
+                <td><%= score.song_name %></td>
+                <td><%= score.mods %></td>
+                <td><%= score.accuracy.toFixed(2) %></td>
+                <td><%= score.pp.toLocaleString() %></td>
+            </tr>
+            <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+    <h4>Recent plays</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Map</th>
+                <th>Mods</th>
+                <th>Accuracy</th>
+                <th>PP</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if (recentScores.length > 0) { %>
+            <% recentScores.forEach(score => { %>
+            <tr>
+                <td><%= score.song_name %></td>
+                <td><%= score.mods %></td>
+                <td><%= score.accuracy.toFixed(2) %></td>
+                <td><%= score.pp.toLocaleString() %></td>
+            </tr>
+            <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+</div>

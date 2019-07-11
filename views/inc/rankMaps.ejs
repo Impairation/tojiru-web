@@ -1,0 +1,52 @@
+<div class="col s12">
+    <div class="card white">
+        <div class="card-content black-text">
+            <h4>Rank maps</h4>
+            <p>note: This will only work with /b/ links, not /s/ links and will only rank that one difficulty.</p>
+            <br>
+            <h5>Rank Map</h5>
+            
+            <form method="POST" action="/admin/rank" id="rank-form">
+                <input id="user_name" name="id" type="text">
+                <button tabindex="4" class="btn waves-effect blue col s12" type="submit"
+                    form="rank-form">Rank</button>
+            </form>
+            <br>
+            <h5>Love Map</h5>
+            <form method="POST" action="/admin/love" id="love-form">
+                <input id="user_name" name="id" type="text" class="validate">
+                <button tabindex="4" class="btn waves-effect blue col s12" type="submit"
+                    form="love-form">Love</button>
+            </form>
+            <br>
+            <h5>Unrank Map</h5>
+            <form method="POST" action="/admin/unrank" id="unrank-form">
+                <input id="user_name" name="id" type="text" class="validate">
+                <button tabindex="4" class="btn waves-effect blue col s12" type="submit"
+                    form="unrank-form">Unrank</button>
+            </form>
+        </div>
+    </div>
+</div>
+<h4>
+    Rank Requests
+</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Requested by</th>
+            <th>Map Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% if (rankRequests && rankRequests.length) { %>
+        <% rankRequests.forEach(map => { %>
+        <tr>
+            <td><a href="/u/<%= map.userid %>"><%= map.username %></a></td>
+            <td><a href="/d/<%= map.beatmapset_id %>"><%= map.song_name %></a></td>
+        </tr>
+        <% }) %>
+        <% } %>
+    </tbody>
+</table>

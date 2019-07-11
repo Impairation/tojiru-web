@@ -1,0 +1,33 @@
+<br>
+<center>
+    <h4><i class="material-icons">accessible_forward</i>Registration Keys</h4>
+    <a href="/generate" class="btn waves-effect blue col s12">generate key</a>
+    <a href="/generate/public" class="btn waves-effect blue col s12">generate key (public) </a>
+    <br>
+    <audio controls autoplay>
+        <source src="/static/keygen.mp3" type="audio/mpeg">
+    </audio>
+
+</center>
+<br>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>code</th>
+            <th>is valid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (keys.length > 0) { %>
+        <% keys.forEach(key => { %>
+        <tr>
+            <td><%= key.id %></td>
+            <td><%= key.code %></td>
+            <td><%= key.allowed %></td>
+        </tr>
+        <% }) %>
+        <% } %>
+    </tbody>
+</table>

@@ -1,0 +1,55 @@
+<div class="container">
+    <h4>Top Scores</h4>
+    <div class="col s12">
+        <center>
+            <ul class="roundedCorners tabs tab-profile z-depth-1 pink" style="width: 100%;">
+                <li class="tab col s4"> <a class="white-text waves-effect waves-light "
+                        href="/top?type=0&m=<%= mode %>">Vanilla </a>
+                </li>
+                <li class="tab col s4"><a class="white-text waves-effect waves-light "
+                        href="/top?type=1&m=<%= mode %>">Relax</a>
+                </li>
+                <li class="tab col s4"><a class="white-text waves-effect waves-light "
+                        href="/top?type=2&m=<%= mode %>">AutoPilot</a>
+                </li>
+            </ul>
+        </center>
+    </div>
+    <br>
+    <div class="col s12">
+        <center>
+            <ul class="roundedCorners tabs tab-profile z-depth-1 pink" style="width: 100%;">
+                <li class="tab col s3"> <a class="white-text waves-effect waves-light "
+                        href="/top?type=<%= type %>&m=0">Standard </a>
+                </li>
+                <li class="tab col s3"><a class="white-text waves-effect waves-light "
+                        href="/top?type=<%= type %>&m=1">Taiko</a>
+                </li>
+                <li class="tab col s3"><a class="white-text waves-effect waves-light "
+                        href="/top?type=<%= type %>&m=2">Catch The Beat</a>
+                </li>
+                <li class="tab col s3"><a class="white-text waves-effect waves-light "
+                        href="/top?type=<%= type %>&m=3">Mania</a>
+                </li>
+            </ul>
+        </center>
+    </div>
+    <% topScores.forEach(score => {%>
+    <div class="row">
+        <div clas="col s4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://assets.ppy.sh/beatmaps/<%= score.beatmapset_id %>/covers/cover.jpg">
+                    <span class="card-title"><%= score.song_name %></span>
+                </div>
+                <div class="card-content">
+                    <p><%= score.username %> - <%= score.pp %>pp | <%= score.accuracy.toFixed(2) %>%</p>
+                </div>
+                <div class="card-action">
+                    <a href="/b/<%= score.beatmap_id %>">Map</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</div>

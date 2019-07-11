@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %> - Tojiru
+    </title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/balloon.css">
+
+    <link href="/static/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-trigger").dropdown();
+            $(".dropdown-trigger-two").dropdown();
+            $(".dropdown-trigger-leaderboard").dropdown();
+            $(".dropdown-trigger-3").dropdown();
+            $(document).ready(function () {
+                $('.sidenav').sidenav();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <nav class="black lighten-2" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Tojiru</a>
+            <% if (userData.privileges > 8) { %>
+            <ul class="left">
+                <li><a href="/admin" style="margin-left: 100px;">Admin Panel</a></li>
+            </ul>
+            <% } %>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-trigger-leaderboard" data-target="dropdown3" href="#">Leaderboard</a>
+                </li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Community</a></li>
+                <li><a class="dropdown-trigger-two" href="#!" data-target="dropdown2">Help</a></li>
+                <% if (loggedIn == true) { %>
+                <li><a class="dropdown-trigger-3" href="#!" data-target="dropdown-profile"><%= userData.username %></a>
+                </li>
+                <% } else { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <% } %>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="/leaderboard">Leaderboard</a></li>
+                <% if (loggedIn == true) { %>
+                <li><a class="dropdown-trigger-profile" href="#!" data-target="dropdown-profile"><img
+                            src="https://a.tojiru.pw/<%= userData.id %>" width="30px"
+                            height="30px" /><%= userData.username %></a></li>
+                <% } else { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/clans">Clans</a></li>
+        <li><a href="/top">Top Plays</a></li>
+        <li><a href="/keys">Public Keys</a></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href="/about">About</a></li>
+        <li><a href="/rules">Rules</a></li>
+        <li class="divider"></li>
+        <li><a href="/connect">Switcher</a></li>
+        <li><a href="/discord">Discord</a></li>
+    </ul>
+    <ul id="dropdown3" class="dropdown-content">
+        <li><a href="/leaderboard/performance">Performance</a></li>
+        <li><a href="/leaderboard/score">Score</a></li>
+        <li><a href="/leaderboard/relax">Relax</a></li>
+        <li><a href="/leaderboard/autopilot">AutoPilot</a></li>
+    </ul>
+    <% if (loggedIn) { %>
+    <ul id="dropdown-profile" class="dropdown-content">
+        <li><a href="/u/<%= userData.id %> ">Profile</a></li>
+        <li><a href="/friends">Friends</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/logout">Log out</a></li>
+    </ul>
+    <% } %>
+    <!-- end navbar -->
+    <% if (id == 0) {%> <% include inc/home.ejs %> <% } %>
+    <% if (id == 1) {%> <% include inc/register.ejs %> <% } %>
+    <% if (id == 2) {%> <% include inc/verify.ejs %> <% } %>
+    <% if (id == 3) {%> <% include inc/leaderboard.ejs %> <% } %>
+    <% if (id == 4) {%> <% include inc/scoreboard.ejs %> <% } %>
+    <% if (id == 5) {%> <% include inc/userpage.ejs %> <% } %>
+    <% if (id == 6) {%> <% include inc/about.ejs %> <% } %>
+    <% if (id == 7) {%> <% include inc/rules.ejs %> <% } %>
+    <% if (id == 8) {%> <% include inc/login.ejs %> <% } %>
+    <% if (id == 9) {%> <% include inc/userNotFound.ejs %> <% } %>
+    <% if (id == 10) {%> <% include inc/pageNotFound.ejs %> <% } %>
+    <% if (id == 11) {%> <% include inc/beatmaps.ejs %> <% } %>
+    <% if (id == 12) {%> <% include inc/scoresTop.ejs %> <% } %>
+    <% if (id == 13) {%> <% include inc/pubKeys.ejs %> <% } %>
+    <% if (id == 14) {%> <% include inc/beatmapListing.ejs %> <% } %>
+    <% if (id == 15) {%> <% include inc/admin404.ejs %> <% } %>
+
+    <% if (id > 99) { %> <% include extra/topbar.ejs %> <% } %>
+    <% if (id == 100) {%> <% include inc/adminHome.ejs %> <% } %>
+    <% if (id == 101) {%> <% include inc/rankMaps.ejs %> <% } %>
+    <% if (id == 102) {%> <% include inc/adminUsersList.ejs %> <% } %>
+    <% if (id == 110) {%> <% include inc/adminBetaKeys.ejs %> <% } %>
+    <% if (id > 99) { %> </div> <% } %>
+</body>
+
+</html>

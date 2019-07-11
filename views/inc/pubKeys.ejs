@@ -1,0 +1,29 @@
+<div class="container">
+        <br>
+        <center>
+            <h4><i class="material-icons">accessible_forward</i>Public Registration Keys</h4>
+            <p>Occasionally, there's keys here, if none of them are valid, check again later.</p>
+        </center>
+        <br>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>code</th>
+                    <th>is valid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (keys.length > 0) { %>
+                <% keys.forEach(key => { %>
+                <tr>
+                    <td><%= key.id %></td>
+                    <td><%= key.code %></td>
+                    <td><%= key.allowed %></td>
+                </tr>
+                <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
